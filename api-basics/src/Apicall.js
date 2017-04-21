@@ -10,9 +10,10 @@ class Apicall extends Component {
   }
 
   // defind getReddit
+  // res.data will return an object 
   getReddit(){
     // axios is to use to make a request
-    axios.get('https://www.reddit.com/r/${this.state.subr}.json')
+    axios.get(`https://www.reddit.com/r/${this.state.subr}.json`)
     .then(res => {
       //catch
       // map, so we can iterative it
@@ -34,10 +35,20 @@ class Apicall extends Component {
     this.getReddit = this.getReddit.bind(this);
   }
 
+// looping the map
+// post.id and post.title is from the name of the Json file
+// details can be seeing by using json paring editor
+
   render(){
     return(
       <div>
-        I am from Api calls.
+       <h1>{`/r/${this.state.subr}`}</h1>
+       <ul>
+         {this.state.posts.map(post =>
+           <li key = {post.id}>{post.title} </li>
+
+         )}
+       </ul>
       </div>
     );
   }
